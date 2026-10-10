@@ -1,6 +1,8 @@
 package nivel1.Ext1;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -51,6 +53,10 @@ public class AlphabeticalList {
             }
         }
         return result;
+    }
+
+    public static void saveToFile(List<String> toWrite, File outputFile) throws IOException {
+        Files.write(outputFile.toPath(), toWrite);
     }
 }
 

@@ -1,11 +1,11 @@
 package nivel1.Ext1;
 
-import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -93,5 +93,13 @@ class AlphabeticalListTest {
         assertThatThrownBy(() -> AlphabeticalList.listDirectoryTree(missing)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void saveLinesToFile(@TempDir File folder) throws IOException {
+        File outputFile = new File(folder, "tree.txt");
+        List<String> newLines = List.of("one", "two", "three", "four", "five");
+        AlphabeticalList.saveToFile(newLines, outputFile);
+        List<String> savedLines = Files.readAllLines(outputFile.toPath());
+        assertThat(savedLines).containsExactlyElementsOf(newLines);
+    }
 }
 
