@@ -101,5 +101,25 @@ class AlphabeticalListTest {
         List<String> savedLines = Files.readAllLines(outputFile.toPath());
         assertThat(savedLines).containsExactlyElementsOf(newLines);
     }
+
+    @Test
+    void readsAllLinesOfFile(@TempDir File folder) throws IOException {
+        File inputFile = new File(folder, "notes.txt");
+        List<String> lines = List.of("one", "two", "three", "four", "five");
+        Files.write(inputFile.toPath(), lines);
+        List<String> result = AlphabeticalList.readFile(inputFile);
+        assertThat(result).containsExactlyElementsOf(lines);
+    }
+
+    @Test
+    void readFileThrowsExceptionWhenPathIsADirectory(@TempDir File folder) {
+        assertThatThrownBy(() -> AlphabeticalList.readFile(folder)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void readFileThrowsExceptionWhenPathDoesNotExist(@TempDir File folder) {
+        File missing = new File(folder, "nonExistent.txt");
+        assertThatThrownBy(() -> AlphabeticalList.readFile(missing)).isInstanceOf(IllegalArgumentException.class);
+    }
 }
 
