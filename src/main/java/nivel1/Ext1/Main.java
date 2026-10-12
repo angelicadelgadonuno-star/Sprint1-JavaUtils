@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Main {
 
-    static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         if (args.length < 2) {
             System.out.println("Must enter a directory and an output file\n");
@@ -15,9 +15,10 @@ public class Main {
         File alpha = new File(args[0]);
         String[] content = AlphabeticalList.listAlphabetically(alpha);
         System.out.println("\n--- Alphabetical list ---\n");
-        for (int i = 0; i < content.length; i++) {
-            System.out.println(content[i]);
+        for (String name : content) {
+            System.out.println(name);
         }
+
         File outputFile = new File(args[1]);
         List<String> tree = AlphabeticalList.listDirectoryTree(alpha);
         AlphabeticalList.saveToFile(tree, outputFile);
@@ -35,6 +36,7 @@ public class Main {
 
         Person recoveredPerson = (Person) Serializer.deserializeObject(personFile);
 
+        System.out.println("\n--- Recovered person ---");
         System.out.println(recoveredPerson.getName());
         System.out.println(recoveredPerson.getAge());
     }
