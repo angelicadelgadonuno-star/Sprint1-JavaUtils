@@ -14,7 +14,7 @@ public class Main {
         }
         File alpha = new File(args[0]);
         String[] content = AlphabeticalList.listAlphabetically(alpha);
-        System.out.println("\n--- Alphabetical List ---\n");
+        System.out.println("\n--- Alphabetical list ---\n");
         for (int i = 0; i < content.length; i++) {
             System.out.println(content[i]);
         }
@@ -22,6 +22,12 @@ public class Main {
         List<String> tree = AlphabeticalList.listDirectoryTree(alpha);
         AlphabeticalList.saveToFile(tree, outputFile);
         System.out.println("Tree saved to " + outputFile.getPath());
+
+        List<String> fileContent = AlphabeticalList.readFile(outputFile);
+        System.out.println("\n--- File content ---\n");
+        for (String line : fileContent) {
+            System.out.println(line);
+        }
     }
 }
 

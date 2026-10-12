@@ -59,7 +59,7 @@ class AlphabeticalListTest {
 
     @Test
     void listsContentOfSubdirectoriesRecursively(@TempDir File folder) throws IOException {
-         File sub = new File(folder, "sub");
+        File sub = new File(folder, "sub");
         sub.mkdir();
         new File(sub, "b.txt").createNewFile();
         List<String> result = AlphabeticalList.listDirectoryTree(folder);
@@ -121,5 +121,6 @@ class AlphabeticalListTest {
         File missing = new File(folder, "nonExistent.txt");
         assertThatThrownBy(() -> AlphabeticalList.readFile(missing)).isInstanceOf(IllegalArgumentException.class);
     }
+
 }
 

@@ -3,7 +3,6 @@ package nivel1.Ext1;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -61,7 +60,7 @@ public class AlphabeticalList {
     }
 
     public static List<String> readFile(File inputFile) throws IOException {
-        if(!inputFile.isFile()){
+        if (!inputFile.isFile()) {
             throw new IllegalArgumentException("The path is not a valid file " + inputFile.getPath());
         }
         return Files.readAllLines(inputFile.toPath());
