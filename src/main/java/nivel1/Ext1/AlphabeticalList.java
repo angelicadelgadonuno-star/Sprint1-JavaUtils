@@ -24,7 +24,7 @@ public class AlphabeticalList {
 
         String[] content = directory.list();
         if (content == null) {
-            return new String[0];   // FIX: evita NPE si hay error de I/O
+            return new String[0];
         }
         Arrays.sort(content, String.CASE_INSENSITIVE_ORDER);
         return content;
@@ -39,7 +39,6 @@ public class AlphabeticalList {
         return result;
     }
 
-    // FIX: recursión con profundidad para indentar correctamente
     private static void appendTree(File current, int depth, List<String> result) {
         File[] files = current.listFiles();
         if (files == null) {
@@ -49,7 +48,7 @@ public class AlphabeticalList {
         Arrays.sort(files, Comparator.comparing(File::getName, String.CASE_INSENSITIVE_ORDER));
 
         for (File file : files) {
-            String type = file.isDirectory() ? "D" : "F";
+            String type = file.isDirectory() ? "(D)" : "(F)";
             Instant instant = Instant.ofEpochMilli(file.lastModified());
             String date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
                     .format(TIMESTAMP);
