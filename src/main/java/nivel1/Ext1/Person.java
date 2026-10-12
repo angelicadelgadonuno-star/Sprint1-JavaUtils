@@ -20,8 +20,6 @@ public class Person implements Serializable {
     public int getAge() {
         return age;
     }
-
-
 }
 
 

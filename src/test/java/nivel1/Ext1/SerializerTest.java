@@ -6,6 +6,7 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -32,6 +33,6 @@ class SerializerTest {
     @Test
     void deserializeThrowsExceptionWhenFileDoesNotExist(@TempDir File folder) {
         File missing = new File(folder, "nonExistent.ser");
-        assertThatThrownBy(()-> Serializer.deserializeObject(missing)).isInstanceOf(FileNotFoundException.class);
+        assertThatThrownBy(() -> Serializer.deserializeObject(missing)).isInstanceOf(FileNotFoundException.class);
     }
 }

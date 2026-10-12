@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 public final class Serializer {
 
+
     public static void serializeObject(Serializable object, File outputFile) throws IOException {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(outputFile))) {
             out.writeObject(object);

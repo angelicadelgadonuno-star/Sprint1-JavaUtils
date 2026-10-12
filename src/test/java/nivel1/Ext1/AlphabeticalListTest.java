@@ -54,7 +54,7 @@ class AlphabeticalListTest {
         new File(folder, "a.txt").createNewFile();
         List<String> result = AlphabeticalList.listDirectoryTree(folder);
         assertThat(result).hasSize(1);
-        assertThat(result.get(0)).startsWith("F a.txt");
+        assertThat(result.get(0)).contains("(F) a.txt");
     }
 
     @Test
@@ -64,8 +64,8 @@ class AlphabeticalListTest {
         new File(sub, "b.txt").createNewFile();
         List<String> result = AlphabeticalList.listDirectoryTree(folder);
         assertThat(result).hasSize(2);
-        assertThat(result.get(0)).startsWith("D sub");
-        assertThat(result.get(1)).startsWith("F b.txt");
+        assertThat(result.get(0)).contains("(D) sub");
+        assertThat(result.get(1)).contains("(F) b.txt");
     }
 
     @Test
@@ -75,9 +75,9 @@ class AlphabeticalListTest {
         new File(folder, "b.txt").createNewFile();
         List<String> result = AlphabeticalList.listDirectoryTree(folder);
         assertThat(result).hasSize(3);
-        assertThat(result.get(0)).startsWith("F a.txt");
-        assertThat(result.get(1)).startsWith("F b.txt");
-        assertThat(result.get(2)).startsWith("F c.txt");
+        assertThat(result.get(0)).contains("a.txt");
+        assertThat(result.get(1)).contains("b.txt");
+        assertThat(result.get(2)).contains("c.txt");
     }
 
     @Test
