@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Main {
 
-    static void main(String[] args) throws IOException {
+    static void main(String[] args) throws IOException, ClassNotFoundException {
 
         if (args.length < 2) {
             System.out.println("Must enter a directory and an output file\n");
@@ -28,6 +28,15 @@ public class Main {
         for (String line : fileContent) {
             System.out.println(line);
         }
+
+        Person one = new Person("Annie", 42);
+        File personFile = new File("person.ser");
+        Serializer.serializeObject(one, personFile);
+
+        Person recoveredPerson = (Person) Serializer.deserializeObject(personFile);
+
+        System.out.println(recoveredPerson.getName());
+        System.out.println(recoveredPerson.getAge());
     }
 }
 
