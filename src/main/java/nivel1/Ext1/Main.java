@@ -6,21 +6,17 @@ import java.util.List;
 
 public class Main {
 
+    private static final String DEFAULT_CONFIG = "config.properties";
+
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-        if (args.length < 2) {
-            System.out.println("Must enter a directory and an output file\n");
-            return;
-        }
-        File alpha = new File(args[0]);
-        String[] content = AlphabeticalList.listAlphabetically(alpha);
-        System.out.println("\n--- Alphabetical list ---\n");
-        for (String name : content) {
-            System.out.println(name);
-        }
+        String configPath = (args.length > 0) ? args[0] : DEFAULT_CONFIG;
+        Config config = ConfigLoader.load(configPath);
 
-        File outputFile = new File(args[1]);
-        List<String> tree = AlphabeticalList.listDirectoryTree(alpha);
+        File inputDirectory = new File(config.getInputDirectory());
+        File outputFile = new File(config.getOutputFile());
+
+        List<String> tree = AlphabeticalList.listDirectoryTree(inputDirectory);
         AlphabeticalList.saveToFile(tree, outputFile);
         System.out.println("Tree saved to " + outputFile.getPath());
 
