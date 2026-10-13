@@ -8,6 +8,17 @@ All programs run from the command line.
 - JDK 17 or higher
 - macOS, Linux or Windows
 
+## Quick start
+
+```bash
+# 1. Compile
+mkdir -p out
+javac -d out $(find src/main/java -name "*.java")
+
+# 2. Run
+java -cp out nivel1.Ext1.Main
+```
+
 ## Project structure
 
 ```
@@ -46,11 +57,10 @@ dir /s /b src\main\java\*.java > sources.txt
 javac -d out @sources.txt
 ```
 
-The compiled files go to the `out` folder.
+The compiled files go to the `out` folder, following the package structure
+(for example, `out/nivel1/Ext1/Main.class`).
 
-## Level 1 — File utilities
-
-### How to run
+## How to run
 
 ```bash
 java -cp out nivel1.Ext1.Main
@@ -58,7 +68,16 @@ java -cp out nivel1.Ext1.Main
 
 The program reads its settings from `config.properties` (see Level 2).
 
-It performs five actions, in this order:
+If no argument is given, the program uses `config.properties` from the
+current folder. You can also pass a different configuration file:
+
+```bash
+java -cp out nivel1.Ext1.Main custom.properties
+```
+
+## Level 1 — File utilities
+
+The program performs five actions, in this order:
 
 1. Lists the contents of the directory in alphabetical order (Exercise 1).
 2. Builds a tree of the directory with all its levels, using `(D)` for
@@ -96,22 +115,6 @@ output.file=tree.txt
 
 - `input.directory` → directory to read.
 - `output.file` → name and path of the resulting TXT file.
-
-### How to run
-
-The program runs the same way as in level 1:
-
-```bash
-java -cp out nivel1.Ext1.Main
-```
-
-It reads `config.properties` from the current folder.
-
-You can also pass a different configuration file:
-
-```bash
-java -cp out nivel1.Ext1.Main custom.properties
-```
 
 ### Change the behavior without recompiling
 
